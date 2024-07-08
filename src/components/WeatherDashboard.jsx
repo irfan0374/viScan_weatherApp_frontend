@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback } from 'react';
 import useGoogleMapApi from './Googlemap';
 import { Autocomplete } from '@react-google-maps/api';
 import CurrentWeather from './CurrentWeather';
-import TodaysForecast from './HistoricalForecast';
+import TodaysForecast from './TodaysForecast';
 import SevenDayForecast from './SevenDayForecast';
 import Sidebar from './SideBar';
 import searchIcon from '../assets/search.png';
@@ -118,40 +118,32 @@ function WeatherDashboard() {
       {loading ? (
         <Loading/>
       ) : (
-       <div className="min-h-screen bg-gray-900 text-white p-4 sm:p-6 shadow-lg">
-  <div className="flex flex-col items-center sm:flex-row sm:justify-center mb-6">
-    {isLoaded && (
-      <Autocomplete className="w-full sm:w-auto mb-4 sm:mb-0">
-        <input
-          type="text"
-          className="cityInput w-full max-w-md px-4 py-2 text-black rounded-md bg-gray-800"
-          placeholder="Any location"
-          value={location}
-          onChange={(e) => setLocation(e.target.value)}
-        />
-      </Autocomplete>
-    )}
-    <div className="search-icon cursor-pointer" onClick={search}>
-      <img className="ml-0 sm:ml-4 w-9 h-9" src={searchIcon} alt="search" />
-    </div>
-  </div>
-
-  <div className="flex flex-col lg:flex-row justify-between gap-6">
-    <div className="w-full lg:w-1/4">
-      <Sidebar />
-    </div>
-    <div className="w-full lg:w-1/2">
-      <CurrentWeather data={currentValue} />
-    </div>
-    <div className="w-full lg:w-1/4">
-      <TodaysForecast data={forecastValue} />
-    </div>
-  </div>
-
-  <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-    {/* Your grid content here */}
-  </div>
-</div>
+        <div className="min-h-screen bg-gray-900 text-white p-6 shadow-lg">
+          <div className="flex justify-center">
+            {isLoaded && (
+              <Autocomplete>
+                <input
+                  type="text"
+                  className="cityInput w-full max-w-md px-4 py-2 text-black rounded-md bg-gray-800"
+                  placeholder="Any location"
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
+                />
+              </Autocomplete>
+            )}
+            <div className="search-icon" onClick={search}>
+              <img className="ml-4 w-9 h-9" src={searchIcon} alt="search" />
+            </div>
+          </div>
+          <div className="flex justify-between mt-6">
+            <Sidebar />
+            <CurrentWeather data={currentValue} />
+            <TodaysForecast data={forecastValue} />
+          </div>
+          <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+         
+          </div>
+        </div>
       )}
     </>
   );
