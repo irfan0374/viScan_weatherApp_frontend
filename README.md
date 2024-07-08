@@ -1,8 +1,30 @@
-# React + Vite
+# Weather Dashboard Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is the frontend for a weather dashboard application built with React and Vite. It provides an interface for users to register, log in, view weather data, and manage their favorite cities.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- User registration and login.
+- Search for current, forecast, and historical weather data by city with Google Map search suggestions.
+- Display weather details including temperature, humidity, wind speed, and conditions.
+- Save and display favorite cities.
+- Route protection for authenticated users.
+- Form validation with Yup and Formik.
+- State management with Redux.
+- Styling with Tailwind CSS.
+
+## Prerequisites
+
+- React
+
+## Installation
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/irfan0374/viScan_weatherApp_frontend.git
+   cd weather-dashboard-frontend
+   npm install
+   npm run dev
+
+   
