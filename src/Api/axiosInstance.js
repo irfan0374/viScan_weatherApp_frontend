@@ -1,5 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 const baseUrl=import.meta.env.VITE_BASE_URL
 const userBaseUrl =baseUrl ;
 
@@ -43,9 +44,11 @@ const handleAxiosError = (error) => {
         } else if (error.response.status === 500) {
             toast.error("500-Internal Server Error");
         } else {
+            console.log("hello eroro")
             toast.error(errorMessage);
         }
     } else {
+        console.log("hello 1234 eror    ")
         toast.error(errorMessage);
     }
 };

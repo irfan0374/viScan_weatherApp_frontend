@@ -24,7 +24,7 @@ export function RegisterPage() {
       label: "SignUp",
       value: "SignUp",
       icon: UserCircleIcon,
-      desc:<SignupPage/>
+      desc:<SignupPage onSuccess={() => setActiveTab("Login")}/>
     },
   ];
 

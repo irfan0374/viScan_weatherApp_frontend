@@ -1,6 +1,6 @@
 import * as yup from 'yup'
 const matchPass=/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
-export const basicScheme=yup.object().shape({
+export const SignupSchema=yup.object().shape({
     name: yup.string().label("Enter the Name").test('whitespace', 'Name cannot be whitespace only', (value) => {
       if (value) {
         return !(/^\s+$/.test(value));
@@ -9,7 +9,6 @@ export const basicScheme=yup.object().shape({
     }) 
     .required("Required"),
     email:yup.string().email("Enter the valid email").required("Requried"),
-    phone:yup.number().positive().integer().required("Required"),
     password:yup.string().min(5).matches(matchPass,{message:'Please create strong password'}).required("Required"),
     confirmPassword:yup.string().oneOf([yup.ref("password"),null],"password must match").required("Required")
 })

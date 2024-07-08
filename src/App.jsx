@@ -1,15 +1,17 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import WeatherDashboard from './components/WeatherDashboard'
+import WeatherDashboard from './components/WeatherDashboard';
 import { RegisterPage } from './components/RegisterPage';
-import { ToastContainer } from 'react-toastify';
+import 'rsuite/dist/rsuite.min.css';
+import UserPublic from './ProtectedRoute/publicRoute';
+import UserProtect from './ProtectedRoute/privateRoute';
+
 function App() {
   return (
     <Router>
-       <ToastContainer/>
       <Routes>
-        <Route path="/" element={<RegisterPage />} />
-        <Route path='/weather' element={<WeatherDashboard />} />
+        <Route path="/" element={<UserPublic><RegisterPage /></UserPublic>} />
+        <Route path="/weather" element={<UserProtect><WeatherDashboard /></UserProtect>} />
       </Routes>
     </Router>
   );

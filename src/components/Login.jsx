@@ -5,11 +5,13 @@ import { useDispatch } from 'react-redux'
 import { userlogin } from '../Api/useApi'
 import { userLogin } from '../Redux/userSlice'
 import { loginSchema } from '../Schema/LoginSchema'
-import { toast } from 'react-toastify'
+import { useToaster,Message } from 'rsuite';
+import 'rsuite/dist/rsuite.min.css';
+
 
 
 const LoginPage = () => {
-
+const toaster=useToaster()
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -25,26 +27,29 @@ const LoginPage = () => {
     })
 
     async function onSubmit() {
-        console.log("hello submit")
         try {
             const res = await userlogin(values)
             if (res?.status == 200) {
-                const { token, User } = res.data
+                const { token, message } = res.data
                 localStorage.setItem("usertoken", token);
                 dispatch(
                     userLogin({
-                        token: token,
-                        user: User,
+                        token: token
                     })
                 );
-                console.log("hhelo submit is okey now")
-                toast.success(res?.data?.message)
-                navigate("/")
+                toaster.push(<Message type="success">Login Successfully</Message>, {
+                    placement: 'topEnd',
+                    duration: 3000
+                  });
+                navigate("/weather")
             }
 
         } catch (error) {
-            console.log(error.message, "response in error")
-            toast.error(error.response?.data?.message);
+            
+            toaster.push(<Message type="warning">{error.response?.data?.error}</Message>, {
+                placement: 'topEnd',
+                duration: 3000
+              });
         }
 
     }
@@ -74,6 +79,7 @@ const LoginPage = () => {
                                             className="border border-gray-400 rounded-lg shadow py-2 px-4 w-full"
                                             {...getFieldProps("email")}
                                         />
+                                          {errors.email && touched.email && <p className='text-red-800'>{errors.email}</p>}
                                     </div>
                                     <div className="mt-5">
                                         <input
@@ -83,6 +89,7 @@ const LoginPage = () => {
                                             className="border border-gray-400 rounded-lg shadow-md py-2 px-4 w-full"
                                             {...getFieldProps("password")}
                                         />
+                                         {errors.password && touched.password && <p className='text-red-800'>{errors.password}</p>}
                                     </div>
 
                                     <div className="mt-5">
