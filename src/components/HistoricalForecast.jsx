@@ -31,17 +31,8 @@ const getWeatherIcon = (icon) => {
   }
 };
 
-function TodaysForecast({ data }) {
+function hist({ data }) {
   const dailyForecast = data || [];
-
-  if (!data || dailyForecast.length === 0) {
-    return (
-      <div className="p-5 bg-gray-800 rounded-xl shadow-lg text-white w-72">
-        <h3 className="text-xl font-semibold mb-2 text-center">7-DAY FORECAST</h3>
-        <p className="text-center text-gray-400">No forecast data available</p>
-      </div>
-    );
-  }
 
   return (
     <div className="p-5 bg-gray-800 rounded-xl shadow-lg text-white w-72">

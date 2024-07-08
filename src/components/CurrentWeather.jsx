@@ -81,39 +81,40 @@ function CurrentWeather({ data }) {
   const defaultWindSpeed = "00";
 
   return (
-    <div className='mt-14'>
-      <div className="p-6 rounded-lg w-[600px] flex flex-col">
+    <div className='mt-4 sm:mt-8 md:mt-14 px-4 sm:px-6 md:px-0'>
+      <div className="p-4 sm:p-6 rounded-lg w-full max-w-[600px] mx-auto flex flex-col">
         <div className="flex justify-between items-start">
-          <h2 className="text-3xl font-bold font-serif">{data ? data.city : defaultCity}</h2>
-          <img className="w-7 h-7" src={wishlist} alt="Wishlist" onClick={() => addFav(data)} />
+          <h2 className="text-2xl sm:text-3xl font-bold font-serif">{data ? data.city : defaultCity}</h2>
+          <img className="w-6 h-6 sm:w-7 sm:h-7" src={wishlist} alt="Wishlist" onClick={() => addFav(data)} />
         </div>
         
         <div className="flex items-center justify-between mt-4">
-          <div className="text-6xl font-semibold font-serif">{data ? kelvinToCelsius(data.currentWeather.temp) : defaultTemp}°</div>
-          <img className='w-32 h-32' src={icon} alt="Weather Icon" />
+          <div className="text-4xl sm:text-6xl font-semibold font-serif">{data ? kelvinToCelsius(data.currentWeather.temp) : defaultTemp}°</div>
+          <img className='w-24 h-24 sm:w-32 sm:h-32' src={icon} alt="Weather Icon" />
         </div>
         
-        <div className="grid grid-cols-2 gap-4 mt-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6 sm:mt-8">
           <div className="flex items-center">
-            <img className='w-10 h-10 mr-2' src={feelsLikeIcon} alt="Feels like" />
-            <span>Feels Like: {data ? kelvinToCelsius(data.currentWeather.feels_like) : defaultFeelsLike}°</span>
+            <img className='w-8 h-8 sm:w-10 sm:h-10 mr-2' src={feelsLikeIcon} alt="Feels like" />
+            <span className="text-sm sm:text-base">Feels Like: {data ? kelvinToCelsius(data.currentWeather.feels_like) : defaultFeelsLike}°</span>
           </div>
           <div className="flex items-center">
-            <img className='w-10 h-10 mr-2' src={humidityIcon} alt="Humidity" />
-            <span>Humidity: {data ? data.currentWeather.humidity : defaultHumidity}%</span>
+            <img className='w-8 h-8 sm:w-10 sm:h-10 mr-2' src={humidityIcon} alt="Humidity" />
+            <span className="text-sm sm:text-base">Humidity: {data ? data.currentWeather.humidity : defaultHumidity}%</span>
           </div>
           <div className="flex items-center">
-            <img className='w-10 h-10 mr-2' src={tempIcon} alt="Pressure" />
-            <span>Pressure: {data ? data.currentWeather.pressure : defaultPressure} hPa</span>
+            <img className='w-8 h-8 sm:w-10 sm:h-10 mr-2' src={tempIcon} alt="Pressure" />
+            <span className="text-sm sm:text-base">Pressure: {data ? data.currentWeather.pressure : defaultPressure} hPa</span>
           </div>
           <div className="flex items-center">
-            <img className='w-10 h-10 mr-2' src={windIcon} alt="Wind" />
-            <span>Wind Speed: {data ? data.currentWeather.wind_speed : defaultWindSpeed} m/s</span>
+            <img className='w-8 h-8 sm:w-10 sm:h-10 mr-2' src={windIcon} alt="Wind" />
+            <span className="text-sm sm:text-base">Wind Speed: {data ? data.currentWeather.wind_speed : defaultWindSpeed} m/s</span>
           </div>
         </div>
       </div>
     </div>
   );
+
 }
 
 export default CurrentWeather;

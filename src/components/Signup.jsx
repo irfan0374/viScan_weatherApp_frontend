@@ -20,11 +20,11 @@ const SignupPage = () => {
       const res = await userSignup(values); 
      
       if (res?.status === 201) {
+        setLoading(false)
         toaster.push(<Message type="success">User registered successfully!</Message>, {
           placement: 'topEnd',
-          duration: 3000
+          duration: 2000
         });
-        setLoading(false)
         window.location.reload();
        
       }
